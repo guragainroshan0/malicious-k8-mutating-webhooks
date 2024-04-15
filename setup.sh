@@ -1,3 +1,7 @@
+#!/bin/bash
+
+apt update -y
+
 apt install -y certbot nginx python3-venv
 
 # create venv and activate
