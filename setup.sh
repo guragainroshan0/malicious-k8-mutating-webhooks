@@ -37,7 +37,18 @@ cp /etc/letsencrypt/live/$DOMAIN/privkey.pem /etc/ssl/private/localhost.key
 # start nginx
 systemctl start nginx
 
-# nginx has proxy pass to port 8080 
-flask --app app.py --debug run --port 8080
+# create flask service file
+echo '[Unit]
+Description=flask web server
+After=network.target
 
+[Service]
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/malicious-k8-mutating-webhooks
+Environment="PATH=/home/ubuntu/malicious-k8-mutating-webhooks/env/bin"
+ExecStart=/home/ubuntu/malicious-k8-mutating-webhooks/env/bin/flask --app app.py --debug run --port 8080' > /etc/systemd/system/flask.service
+
+# start flask service
+systemctl start flask
 
